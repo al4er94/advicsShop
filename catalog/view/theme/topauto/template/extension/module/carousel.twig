@@ -1,0 +1,12 @@
+<div id="carousel{{ module }}" class="brands-slider">
+  {% for banner in banners %}
+  <div class="item text-center">
+    {% if banner.link %}
+    <a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /><div class="bannerttl">{{ banner.title }}</div></a>
+    {% else %}
+    <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+	<div class="bannerttl">{{ banner.title }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>

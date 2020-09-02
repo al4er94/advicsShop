@@ -1,0 +1,26 @@
+<div class="benefits" id="benefits{{ module }}">
+	{% if topautobenefits %}
+	{% for topautobenefit in topautobenefits %}
+		<div class="benefit">
+			<div class="oneben row">
+				<div class="col-md-7 col-sm-12">
+					<div class="inform">
+						{% if topautobenefit.title %}
+						<div class="title">{{ topautobenefit.title }}</div>
+						{% endif %}
+						{% if topautobenefit.text %}
+						<div class="text">{{ topautobenefit.text }}</div>
+						{% endif %}
+						{% if topautobenefit.link %}
+						<a href="{{ topautobenefit.link }}" class="btn btn-default">{{ topautobenefit.btntext }}</a>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-md-5 hidden-sm text-right">
+					<img src="{{ topautobenefit.image }}" alt="{{ topautobenefit.title }}" class="img-responsive" />
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+	{% endif %}
+</div>

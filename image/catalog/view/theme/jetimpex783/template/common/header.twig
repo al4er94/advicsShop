@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+
+{% if page_direction == 'rtl' %} {% set direction = 'rtl' %} {% endif %}
+	<html dir="{{ direction }}" lang="{{ lang }}" class="{{ responsive ? mobile-responsive-off : '' }}">
+	<!--<![endif]-->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>{{ title }}</title>
+		<base href="{{ base }}" />
+
+		{% if description %}
+			<meta name="description" content="{{ description }}" />
+		{% endif %}
+
+		{% if keywords %}
+			<meta name="keywords" content="{{ keywords }}" />
+		{% endif %}
+
+		{% for meta in add_this_meta %}
+			<meta property="og:{{ meta.property }}" content="{{ meta.content }}" />
+		{% endfor %}
+
+		{# fonts #}
+		<link href="//fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=cyrillic" rel="stylesheet">
+		<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+		<link href="catalog/view/theme/{{ theme_path }}/stylesheet/material-design.css" rel="stylesheet">
+		{# end fonts #}
+
+		<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+		{# styles #}
+		<link href="catalog/view/theme/{{ theme_path }}/stylesheet/photoswipe.css" rel="stylesheet">
+		<link href="catalog/view/theme/{{ theme_path }}/stylesheet/stylesheet.css" rel="stylesheet">
+		<link href="catalog/view/theme/{{ theme_path }}/js/fancybox/jquery.fancybox.css" rel="stylesheet">
+		{# end styles #}
+		{# rtl #}
+		{% if direction == 'rtl' %}
+			<link href="catalog/view/theme/{{ theme_path }}/stylesheet/bootstrap-rtl.css" rel="stylesheet">
+			<link href="catalog/view/theme/{{ theme_path }}/stylesheet/rtl.css" rel="stylesheet">
+		{% endif %}
+		{# end rtl #}
+		{% for style in styles %}
+			<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+		{% endfor %}
+
+		{% for link in links %}
+			<link href="{{ link.href }}" rel="{{ link.rel }}" />
+		{% endfor %}
+
+		<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+		<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+		{% for script in scripts %}
+			<script src="{{ script }}" type="text/javascript"></script>
+		{% endfor %}
+
+		{% if color_scheme_link %} 
+			<link id="color_scheme" href="{{color_scheme_link}}" rel="stylesheet">
+		{% endif %}
+
+		{% for analytic in analytics %}
+			{{ analytic }}
+		{% endfor %}
+	</head>
+	<body>
+		<p id="gl_path" class="hidden">{{ theme_path }}</p>
+		<div id="page">
+			<div class="ie-warning">
+				<a href="//windows.microsoft.com/en-us/internet-explorer/download-ie">
+					<img src="catalog/view/theme/{{ theme_path }}/image/warning_bar_0000_us.jpg" height="75" width="1170" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
+				</a>
+			</div>
+			<div class="demo-border">
+				<div class="container">
+						<a href="https://www.templatemonster.com/opencart-templates/auto-parts-responsive-opencart-template-65320.html" class="demo-img"><img src="image/catalog/demo/Auto Point.jpg" alt=""></a>
+				</div>
+				</div>
+			<nav id="top">
+			
+
+				<div class="container">
+				
+					
+					<div id="logo">
+						{% if logo %}
+							<a href="{{ home }}">
+								<img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+							</a>
+						{% else %}
+							<h1>
+								<a href="{{ home }}">{{ name }}</a>
+							</h1>
+						{% endif %}
+					</div>				
+					{{ cart }}
+					<div id="top-links" class="nav pull-right">
+						<ul class="list-inline">
+							<li class="toggle-wrap">
+								<a href="{{ account }}" class="toggle">{{ text_account }}</a>
+								<ul class="toggle_cont toggle_cont__right">
+									{% if logged %}
+										<li><a href="{{account}}">{{ text_account }}</a></li>
+										<li><a href="{{wishlist}}" id="wishlist-total">{{ text_wishlist }}</a></li>
+										<li><a href="{{compare}}" id="compare-total2" title="{{ text_compare }}">{{ text_compare }}</a></li>
+										<li><a href="{{order}}">{{ text_order }}</a></li>
+										<li><a href="{{transaction}}">{{ text_transaction }}</a></li>
+										<li><a href="{{download}}">{{ text_download }}</a></li>
+										<li><a href="{{logout}}">{{ text_logout }}</a></li>
+									{% else %}
+										<li><a href="{{register}}">{{ text_register }}</a></li>
+										<li><a href="{{login}}">{{ text_login }}</a></li>
+									{% endif %}								
+								</ul>
+							</li>
+							{% if logged %}
+								<li><a href="{{logout}}">{{ text_logout }}</a></li>
+							{% else %}
+								<li><a href="{{login}}">{{ text_login }}</a></li>
+							{% endif %}						
+							<li>{{ language }}</li>
+							<li>{{ currency }}</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<header>
+				<div class="stuck-menu"> {# id="stuck" #}
+					<div class="container">
+					</div>
+				</div>
+				{% if navigation %}
+					<div class="container">
+						<div class="navigation">
+							{{ navigation }}{{ search }}
+						</div>
+					</div>
+				{% endif %}
+				{% if header_top %}
+					<div class="header_modules">
+						{{ header_top }}
+					</div>
+				{% endif %}
+			</header>
+			{# {{ menu }} #}

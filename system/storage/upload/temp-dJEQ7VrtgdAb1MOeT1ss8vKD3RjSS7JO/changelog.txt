@@ -1,0 +1,452 @@
+_v2.5.0 beta
+- Filter import/export
+- Attribute import/export
+- Fix cannot use object of type stdClass
+- Fix issue of only one char was imported on some php versions
+- Fix some incorrect import values were appearing when using preserve mode with extra fields
+- Category import can now handle subcategory separator in category name
+- Use [attributes] keyword in attribute value to get attributes from an xml node
+- New parameter in item exists to add option only
+- Add option is detecting if an option value exists and does not duplicate in this case
+
+v2.4.2
+- Better download of files in URL mode, possibility to download larger files
+- Access to password protected URLs
+- Fix menu shortcut not appearing on OC3
+- Cron export can now handle more parameters
+- Add multistore seo urls from Complete SEO in export
+- Fix error message if 0 rows to update
+- Display error details in case of cron missing parameters
+- Fix cron options not saved since the tab has been moved
+- Now possible to set image for options
+- Fix option auto-created twice when using multi-language names
+- Options advanced values can be configured to root elements in xml mode too
+- Better attribute import, possibility to get node parameter
+- Fix import category by ID
+
+v2.4.1
+- Multilingual filter import
+- Fix javascript issue on some browsers making export options to not display
+- Fix undefined index store on step 4
+- Fix profile does not save correctly filter parameters
+- Fix multilingual import of attributes only taking default language
+- Fix extra fields not correctly saved in profile
+- Extra fields and custom value can be used in multilingual fields
+- Detect stores by name
+- Delete function was not applied when using cron
+- Possibility to update quantity of an option in product quick update
+- Cron parameters now in main menu
+- Cron report displays last 10 000 lines of log file
+- Possibility to import option only by value
+- Fix export issue when limit is greater than batch limit
+
+v2.4.0
+- Better formatting of xml export
+- Update preserve mode does not include default values for item update
+- Update preserve mode includes default values for item create
+- Multilingual import of options
+- Multilingual import of attributes
+- Possibility to use multiple entries for filters
+- Fix profile value not displayed when using a value not predefined (xml mode)
+- Add full path to category in category export
+- Better display of subcategory fields
+- Add cron log information for export
+- New extra functions: encode and decode HTML
+- Fix issue with html formatting when using multiple extra functions on html
+- New option to limit import to specific number
+- Fix customer delete before import
+- Better handling of subcategories
+- Customer group now auto-creates if not exists
+- Include in subcategories option now also works for categories defined in category binding
+- Handle better an option if only option value is provided
+
+v2.3.2
+- Add store name in export files
+- Better implementation of extra fields, now works even if the model is not made to handle them
+- Fix multilingual extra field not working for extra languages
+
+v2.3.1
+- Updated to latest version of file uploader, fix issues to upload files on some servers
+- Also display identifier in cron product quick update for easier check
+- Handle price prefix for option import
+- Fix notice when using skip on existing value and not found product
+- Add shortcut to module on OC 3
+
+v2.3.0
+- New extra function to format a date to SQL format
+- New extra function to set up conditionnal values
+- New option in delete items to not remove skipped items
+- New option for category binding to skip empty in exclusive mode
+- Fix bind categories with only one category
+- Cron for export
+- Better presentation of cron commands
+
+v2.2.1
+- Updated gkd_loader to work with deeper level
+- Add line return in XML export after each item
+- Fix profile field of extra function not saved correctly
+- Fix status setting in profile not correctly applied in product quick update
+
+v2.2.0
+- Added order export
+- New option to set subcategories in easier way than using extra functions
+- Export specific substore data of Complete SEO Package
+- Added export counter on all export types
+- Fixed store filter not working on some export types
+- Fixed some notices
+
+v2.1.2
+- New comparison operators for skip or delete extra function: greater than, lower than, contains, do not contain
+
+v2.1.1
+- Rename images with Complete SEO Package settings if enabled
+- Remove or disable function links to products fixed
+- Do not assign empty image to product in case of image not found on remote server
+- Fix error on product quick update and remove all non-updated item function
+- Fix notice when getting multiple images from an xml node
+
+v2.1.0
+- Better possibilities for remove delete extra function
+- Big improvments on customer import/export
+- Possibility to import 3 addresses for customer
+- Custom fields are now handled correctly
+- Including default address indicator in export
+- Fix preview display issues
+
+v2.0.0
+- Possibility to import files with one row for product and next rows for options
+- Extended possibilities for option import in CSV/XLS mode
+- Import label can be saved in profile (open step five before saving profile to do so)
+- New parameter to specifically define the import label on cron job
+- Also choose to delete by label in product quick update mode
+
+v1.9.5
+- Include the default field values in update preserve mode
+- Get XML nodes on 500 first rows
+- Get country by name
+- Get zone by name
+- Add import label option for quick update
+- Import label is now updated also with product update in preserve mode
+- New extra function to skip based on actual item value
+- Fix skip based on import value when not manual
+
+v1.9.4
+- Fix notice when using cron
+- Fix some extra function settings not saved correctly in profile
+
+v1.9.3
+- New option for wholesale price mulitiplication
+- Trim image urls before importing
+- Fix undefined charset assuming UTF-8 issue
+- Fix issue when no categories on store
+
+v1.9.2
+- Add link into export
+- Do not auto-create filter if quantity is 0
+- Possibility to set multiple categories in category binding
+- Possibility to use specific path in XML to access a value not listed in preview
+- New parameters to import complex formatting for attributes and options
+- Changed xml array format, [x] is now displayed as /x (update your saved profiles)
+- Display the reason when an item have been skipped
+- Added information about attribute and option import format
+- Fix extra function substract was generating negative number
+
+v1.9.1
+- Get XML nodes on 20 first rows instead of only 1st one
+- Possibility to define your own node name in column binding in case node is not listed
+- New option to auto apply filters to category
+- New option to skip items with unbound categories
+- Auto create category are now applied to extra stores too
+- Category binding in saved profile correctly displayed
+- Auto filter to category now works also in update-replace mode and for new products
+- Fix undefined index in Excel2003XML with some specific xls files
+- Fix error when incorrect image format
+- Fix error on export on some configurations
+- Fix GKD_UNIV_IMPORT already defined appearing on some configurations
+
+v1.9.0
+- New options to automatically generate filters from options or attributes
+- Add information about how to resolve errors caused by custom module data
+- Fix warning on non numerical values when using math function on PHP 7
+- Fix category bindings for XLS files
+- Fix script_name error when using cron on OC 2.2
+- Fix order update import missing language texts on OC 3
+
+v1.8.9
+- Fix error with real_escape_string
+- Auto create of categories now includes seo url
+- Fix error: html_entity_decode() charset UTF-8 not supported
+- Fix warning displayed sometimes when trying to convert html list to attributes
+
+v1.8.8
+- Fix extra field was not working when using update preserve mode
+- If using same field for image and additional image, the module will remove duplicate first image from additional ones
+- Module detects incorrect image files or not found remote images and do not try to insert them
+
+v1.8.7
+- Detect duplicate categories before inserting
+- Fix undefined manufacturer_id
+- Fix 2nd option of format for url was not saved into profile
+- Fix category binding not working on some server or feeds
+
+v1.8.6
+- Download remote files do not fails anymore on forced download instead opening
+- Better detection of errors when trying to remote download a file
+- Tabbed step 2 for better ergonomy
+- Auto insert of category is has now 'top' parameter active by default and meta title set
+- Fix loading profile was not loading saved extension
+- Fix step 2 go back to default tab after a few seconds
+
+v1.8.5
+- New option for exclusive category binding
+
+v1.8.4
+- Fix duplicate entry on product_to_category when using update preserve
+- Better display of parent category during simulation
+- Display popup in case of error during simu or process
+- Fix error when xlsx contain datetime field
+- Fix notice on install on some opencart versions
+- Fix error when auto creating categories
+- Fix simulation issue
+
+v1.8.3
+- New function: get remote data
+- It is now possible to reorder the functions
+- Cron jobs compatibility on OC 3
+- Do not insert special price if same than normal price
+- Format for url is now stripping duplicate separator chars
+- Fix default value not saved in profile for categories
+- Fix missing parameter on getCategories on OC 1.5
+- Fix style on OC 1.5
+
+v1.8.2
+- New function: format for url
+- New export option: choose field to export
+
+v1.8.1
+- New extra functions: regex extract, regex replace, regex remove
+- Fix Export button disabled for other export type if 0 products
+- Fix undefined importLabels when no labels have been used
+- Fix issues when temp folder was not created uppon install
+- Display error message in case of fail of loading remote file
+- Fix XLS files support
+- Fix cron path and parameters
+
+v1.8.0
+- New feature: handle extra fields for making more complex extra function operations
+- New extra function: round
+- Attribute import can handle html <ul> list
+- Changed some default settings
+- Added address to customer export
+- Fix XLS export
+- Added ODS export
+
+v1.7.1
+- Added not equal comparator for skip extra function
+- Fix extra function skip
+- Fix undefined warning in step 5
+
+v1.7.0
+- Compatibility with oc 3.x
+
+v1.6.8
+- Fix issue with option in update preserve mode
+- Fix category binding not working if some special character into category name
+- Add new option to start import from specific row
+
+v1.6.7
+- New extra function to skip item
+- New option to spare server ressources during process
+
+v1.6.6
+- Product quick update: add or subtract quantity
+- Download images even with no allow_url_fopen or open_basedir
+
+v1.6.5
+- Fix display issues on step 3 when some html was in preview
+- Fix error using include parent categories
+- Reduce size of preview in case of large data displayed
+- Do not reset uploaded file on profile loading
+- Extended way to import options
+
+v1.6.4
+- Fix unexpected float
+- Fix not good value displayed in data verification for status
+- Possibility to not set status in product quick update
+- New option in quick update mode to add or subtract quantity value
+- Possibility to set default value on weight
+- URL file mode is now copying file locally for better performance
+
+v1.6.3
+- New option to include product into parent categories
+- Fix first column ignored in saved profile
+- Detect if there is any open_basedir restriction
+
+v1.6.2
+- Fix notice on importLabels on product list if no label has been generated yet
+- Fix error on setting parent category
+- Fix unwanted column assignation on saved profile
+
+v1.6.1
+- Extra functions are now processed also for getting category bindings
+- Fix delete profile error
+- Detect if allow_url_fopen is not enabled
+
+v1.6.0
+- Possibility to set default product categories
+- Category binding feature
+- Fix product quick update stock 0 was not updated
+- Export relative path was not working on additional images
+- Fixed freezing on xsl and xslx
+- Reorganization of extra functions menu
+- Include extra functions for each import type
+- Added button to remove an item into multiple select boxes
+- Added filter export
+- Added filter import by string like filter_group:filter_name
+- Added new extra functions: uppercase, lowercase, truncate
+
+v1.5.0
+- Handle images with url starting by "//" only
+- Fix empty extra custom field when saving profile
+- Option to disable some settings to make the import to work correctly with some modules
+- Save import batch identifier to further easily find products corresponding to a specific import
+- Import by fake order ID (for Order Number Manager)
+- New extra functions: text and number operators, strip tags, etc
+  
+v1.4.3
+- Detects if extra category separator
+- Do not include empty special price
+- Detect real filename in case of dynamic url
+- Better performance on XLS and XLSX
+
+v1.4.2
+- Fix file extension not correctly recognized if in uppercase
+
+v1.4.1
+- Added extra function: multiple separator
+- Detect if image format is not correct
+- Fix parameters not correctly saved if empty value
+- Better XML support
+- Fix xml field not found in update preserve mode
+- Cron issues on OC 2.0 and 2.1
+
+v1.4.0
+- Import from FTP, URL or filesystem
+- Cron jobs
+- Fix issue on step 3 when empty header name
+- Better design on OC 1.5
+- Fix notices on upload on some servers
+- Fix special price when set with no extra parameters
+- Improved order status updater
+- Order updater natively updates tracking in quick order status updater
+ 
+v1.3.9
+- Fix export when zero items to export
+- Added item to export counter
+- Added order status updater
+
+v1.3.8
+- Export in multi-languages
+
+v1.3.7
+- Additional images now includes the sort order
+- Fix missing separator in option export
+
+v1.3.6
+- Multiple separator option was hidden on xls files
+- Better handling of options (stock, subtract, weight...)
+- Missing text on default
+- Added seo keyword field
+
+v1.3.5
+- Fix additional image not imported when image already exists
+- Fix category import detection on complex cases
+- Add categories, special, discount, attributes and options to csv export
+- Better formating of special and discount values in simulation
+
+v1.3.4
+- Fix option import
+
+v1.3.3
+- Fix manufacturer update with name not working since v1.3.0
+
+v1.3.2
+- Fixed image download with % or space char
+- Added russian translation (thanks Ivan)
+
+v1.3.1
+- Status field detects textual values like on/off, true/false
+- Fix issues with quick update in other modes than product ID
+- Improved special field format
+
+v1.3.0
+- Delete extra items not is update file
+- Fix multiple fields not displayed on saved profiles
+- Detect if user has modify right when uploading a file
+- New options to delete items
+- Fixed options import in csv
+
+v1.2.7
+- Image import is now able to import images from urls without extension
+- Fix int/float values not correctly imported in xls/xlsx
+
+v1.2.6
+- Fix warning on some php versions
+- File upload was failing on very big files
+- XML options and attributes
+- Improved button for pausing process
+
+v1.2.5
+- Possibility to import category with specific category_id
+
+v1.2.4
+- Added option to set default parent category in category import
+
+v1.2.3
+- Better XML support
+
+v1.2.2
+- Ability to import customer with password from other OC versions
+
+v1.2.1
+- Export full image url option
+- Export additional images
+- Export filter by category
+- Export filter by manufacturer
+- Fix undefined index when not updating product name
+
+v1.2.0
+- XML import
+- Fix html data displayed encoded when source data was encoded
+- Export uncoded html data for xls and xml
+
+v1.1.2
+- Fix empty attribute take next column value
+
+v1.1.1
+- Better working of update preserve mode
+- Update preserve now available for category update
+
+v1.1.0
+- New feature: custom fields
+- Fix product additional images in download mode
+- Special price can be inserted directly
+- Fix delete button design in case of big list
+- Fix category marked as to insert, when to update in name detection
+- Fixed parse error on some PHP version (< 5.4)
+
+v1.0.4
+- Fixed issues with multilinguages in preserve mode
+
+v1.0.3
+- Better way to handle product attributes
+
+v1.0.2
+- New update method: preserve mode (update only assigned fields)
+- Fix issue with db prefix
+
+v1.0.1
+- OC 2.3 compatibility
+
+v1.0.0
+- Initial release

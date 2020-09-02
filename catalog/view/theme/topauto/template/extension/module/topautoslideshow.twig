@@ -1,0 +1,20 @@
+<div class="topautoslideshow{{ module }} topautoslideshow">
+  {% for banner in banners %}
+  <div>
+    {% if banner.link %}
+    <a href="{{ banner.link }}"><img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>
+    {% else %}
+    <img src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+<script type="text/javascript"><!--
+$('.topautoslideshow{{ module }}').slick({
+  dots: false,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 1,
+  adaptiveHeight: true
+});
+--></script>

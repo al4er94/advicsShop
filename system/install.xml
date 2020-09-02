@@ -1,0 +1,648 @@
+<modification>
+	<name>TopAuto Opencart Theme</name>
+	<code>TopAuto Opencart Theme</code>
+	<version>1.0.4</version>
+	<author>theplastique@gmail.com</author>
+	<!--ThemeSettings START-->
+		<file path="catalog/controller/common/header.php">
+			<operation>
+				<search><![CDATA[$data['title']]]></search>
+				<add position="before"><![CDATA[
+				$data['theme_topauto_phone'] = $this->config->get('theme_topauto_phone');
+				$data['theme_topauto_phone1'] = $this->config->get('theme_topauto_phone1');
+				$data['theme_topauto_phone2'] = $this->config->get('theme_topauto_phone2');
+				$data['theme_topauto_phone3'] = $this->config->get('theme_topauto_phone3');
+				$data['theme_topauto_email'] = $this->config->get('theme_topauto_email');
+				$data['theme_topauto_vklstyle'] = $this->config->get('theme_topauto_vklstyle');
+				$data['theme_topauto_menustyle'] = $this->config->get('theme_topauto_menustyle');
+				
+				
+				$this->load->model('setting/setting');
+				$this->load->model('localisation/language');
+				$data['language_id'] = $this->config->get('config_language_id');
+				$theme_topauto = array();
+				$theme_topauto = $this->model_setting_setting->getSetting('topauto', $this->config->get('config_store_id'));
+				$data['main_menu'] = array();
+				$data['main_menu_vkl'] = false;
+				$data['main_menu_vkl'] = $this->config->get('theme_topauto_menu_vkl');
+				$data['main_menu'] = $this->config->get('theme_topauto_menu_punkt');
+				if (!empty($data['main_menu'])){
+					foreach ($data['main_menu'] as $key => $value) {
+						$sort_main_menu[$key] = $value['sort'];
+					} 
+					array_multisort($sort_main_menu, SORT_ASC, $data['main_menu']);
+				}			
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/controller/common/menu.php">
+			<operation>
+				<search><![CDATA[$data['categories']]]></search>
+				<add position="before"><![CDATA[
+				$data['theme_topauto_menustyle'] = $this->config->get('theme_topauto_menustyle');				
+				$this->load->model('setting/setting');
+				$this->load->model('localisation/language');
+				$data['language_id'] = $this->config->get('config_language_id');
+				$theme_topauto = array();
+				$theme_topauto = $this->model_setting_setting->getSetting('topauto', $this->config->get('config_store_id'));
+				]]></add>
+			</operation>
+		</file>		
+		<file path="catalog/controller/common/footer.php">
+			<operation>
+				<search><![CDATA[$data['scripts']]]></search>
+				<add position="before"><![CDATA[
+				$data['address'] = nl2br($this->config->get('config_address'));
+				$data['open'] = nl2br($this->config->get('config_open'));
+				$data['theme_topauto_vklnewsletter'] = $this->config->get('theme_topauto_vklnewsletter');
+				$data['theme_topauto_vklcontakt'] = $this->config->get('theme_topauto_vklcontakt');
+				$data['theme_topauto_vklcopy'] = $this->config->get('theme_topauto_vklcopy');
+				$data['theme_topauto_phone'] = $this->config->get('theme_topauto_phone');
+				$data['theme_topauto_phone1'] = $this->config->get('theme_topauto_phone1');
+				$data['theme_topauto_phone2'] = $this->config->get('theme_topauto_phone2');
+				$data['theme_topauto_phone3'] = $this->config->get('theme_topauto_phone3');
+				$data['theme_topauto_email'] = $this->config->get('theme_topauto_email');
+				$data['theme_topauto_soc1'] = $this->config->get('theme_topauto_soc1');
+				$data['theme_topauto_soc2'] = $this->config->get('theme_topauto_soc2');
+				$data['theme_topauto_soc3'] = $this->config->get('theme_topauto_soc3');
+				$data['theme_topauto_soc4'] = $this->config->get('theme_topauto_soc4');
+				$data['theme_topauto_soc5'] = $this->config->get('theme_topauto_soc5');
+				$data['theme_topauto_soc6'] = $this->config->get('theme_topauto_soc6');
+				]]></add>
+			</operation>
+			<operation>
+				<search><![CDATA[$data['newsletter']]]></search>
+				<add position="before"><![CDATA[
+				$data['text_catalog'] = $this->language->get('text_catalog');		
+				$data['text_social'] = $this->language->get('text_social');		
+				$this->load->model('catalog/category');
+
+				$this->load->model('catalog/product');
+
+				$data['categories'] = array();
+
+				$categories = $this->model_catalog_category->getCategories(0);
+
+				foreach ($categories as $category) {
+					if ($category['top']) {
+						$data['categories'][] = array(
+							'name'     => $category['name'],
+							'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
+						);
+					}
+				}
+				$this->load->model('setting/setting');
+				$this->load->model('localisation/language');
+				$data['language_id'] = $this->config->get('config_language_id');
+				$theme_topauto = array();
+				$theme_topauto = $this->model_setting_setting->getSetting('topauto', $this->config->get('config_store_id'));
+				$data['footer_buttons'] = array();
+				$data['footer_buttons_vkl'] = false;
+				$data['footer_buttons_vkl'] = $this->config->get('theme_topauto_footer_buttons_vkl');
+				$data['footer_buttons'] = $this->config->get('theme_topauto_footer_buttons_punkt');					
+				if (!empty($data['footer_buttons'])){
+					foreach ($data['footer_buttons'] as $key => $value) {
+						$sort_footer_buttons[$key] = $value['sort'];
+					} 
+					array_multisort($sort_footer_buttons, SORT_ASC, $data['footer_buttons']);
+				}				
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/en-gb/common/footer.php">
+			<operation>
+				<search><![CDATA[$_['text_powered']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_catalog']       = 'Catalog';
+				$_['text_social']       = 'Follow Us';
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/ru-ru/common/footer.php">
+			<operation>
+				<search><![CDATA[$_['text_powered']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_catalog']       = 'Каталог';
+				$_['text_social']       = 'Следуй за нами';
+				]]></add>
+			</operation>
+		</file>		
+	<!--ThemeSettings END-->
+	<!--Newsletter in footer START-->
+	<file path="catalog/language/{english,en-gb}/common/footer.php">
+		<operation>
+			<search><![CDATA[$_['text_newsletter']]]></search>
+			<add position="before">
+                <![CDATA[
+                    $_['text_newsletter_text']   = 'Enter your email address';
+                    $_['text_subcribe']   = 'Subcribe';
+                    $_['text_error_subcribe']   = 'You have already subcribed newsletter!';
+                    $_['text_ntitle']   = 'Subscribe to news and promotions';
+                    $_['text_nsubtitle']   = 'I agree to the processing of personal data!';
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="catalog/language/{russian,ru-ru}/common/footer.php">
+		<operation>
+			<search><![CDATA[$_['text_newsletter']]]></search>
+			<add position="before">
+                <![CDATA[
+                    $_['text_newsletter_text']   = 'Введите ваш Email';
+                    $_['text_subcribe']   = 'Подписаться';
+                    $_['text_error_subcribe']   = 'Ваш Email уже есть в списке подписчиков!';
+                    $_['text_success_subcribe']   = 'Вы успешно подписались на рассылку!';
+                    $_['text_ntitle']   = 'Подписка на новости и акции';
+                    $_['text_nsubtitle']   = 'Я согласен на обработку персональных данных!';					
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="catalog/controller/common/footer.php">
+		<operation>
+			<search><![CDATA[$data['text_newsletter'] = $this->language->get('text_newsletter');]]></search>
+			<add position="after">
+                <![CDATA[
+                    $data['text_newsletter_text'] = $this->language->get('text_newsletter_text');
+                    $data['text_subcribe'] = $this->language->get('text_subcribe');
+                    $data['text_error_subcribe'] = $this->language->get('text_error_subcribe');
+                    $data['text_success_subcribe'] = $this->language->get('text_success_subcribe');
+                    $data['text_ntitle'] = $this->language->get('text_ntitle');
+                    $data['text_nsubtitle'] = $this->language->get('text_nsubtitle');
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="catalog/controller/common/footer.php">
+		<operation>
+			<search><![CDATA[public function index() {]]></search>
+                <add position="before">
+                <![CDATA[
+                    public function addToNewsletter(){
+            
+                        $email = $this->request->post['email'];
+                        
+                        $this->load->language('common/footer');
+                        $this->load->model('account/customer');
+
+                        $this->createNewsletterTables();
+                        
+                        $count = $this->checkEmailSubscribe($email);
+                        
+                        if($count == 0){
+                            
+                            $newsletter_id = $this->model_account_customer->addToNewsletter($email);
+                            $msg = $this->language->get('text_success_subcribe');
+                            
+                        } else {
+                            
+                            $msg = $this->language->get('text_error_subcribe');
+                        }
+                        
+                        echo $msg;
+
+                    }
+        
+                    public function createNewsletterTables() {
+
+                        $query = $this->db->query("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "newsletter (
+                        `id` INT( 11 ) NOT NULL AUTO_INCREMENT ,
+                        `email` VARCHAR( 255 ) NOT NULL ,
+                        `group` VARCHAR( 25 ) NOT NULL ,
+                        `date_added` DATETIME NOT NULL ,
+                        PRIMARY KEY ( `id` )
+                        )");
+                    } 
+        
+                    public function checkEmailSubscribe($email){
+
+                        $this->load->model('account/customer');
+
+                        $count = $this->model_account_customer->checkEmailSubscribe($email);
+
+                        return $count;
+
+                    }
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="catalog/model/account/customer.php">
+		<operation>
+			<search><![CDATA[public function deleteLoginAttempts($email) {]]></search>
+			<add position="before">
+                <![CDATA[
+                    public function addToNewsletter($email) {
+		
+                        $this->db->query("INSERT INTO " . DB_PREFIX . "newsletter SET email = '" . $this->db->escape(utf8_strtolower($email)) . "', `group` = 'newsletter', date_added = NOW()");
+
+                        $newsletter_id = $this->db->getLastId();
+
+                        return $newsletter_id;
+                    }
+        
+                    public function checkEmailSubscribe($email) {
+
+                        $query = $this->db->query("SELECT COUNT(email) AS total FROM " . DB_PREFIX . "newsletter WHERE email = '" . $this->db->escape(utf8_strtolower($email)) . "'");
+
+                        return $query->row['total'];
+                    }
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/view/template/marketing/contact.twig">
+		<operation>
+			<search><![CDATA[<option value="product">{{ text_product }}</option>]]></search>
+			<add position="after">
+                <![CDATA[
+                    <option value="newsletter">{{ text_newsletter }}</option>
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/language/{english,en-gb}/marketing/contact.php">
+		<operation>
+			<search><![CDATA[$_['text_product']]]></search>
+			<add position="before">
+                <![CDATA[
+                    $_['text_newsletter']      = 'Newsletter Subscribers Footer';
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/language/{russian,ru-ru}/marketing/contact.php">
+		<operation>
+			<search><![CDATA[$_['text_product']]]></search>
+			<add position="before">
+                <![CDATA[
+                    $_['text_newsletter']      = 'Подписчики (c формы в футере)';
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/controller/marketing/contact.php">
+		<operation>
+			<search><![CDATA[$data['text_product'] = $this->language->get('text_product');]]></search>
+			<add position="after">
+                <![CDATA[
+                    $data['text_newsletter'] = $this->language->get('text_newsletter');
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/controller/marketing/contact.php">
+		<operation>
+			<search><![CDATA[$email_total = $this->model_customer_customer->getTotalCustomers($customer_data);]]></search>
+			<add position="replace">
+                <![CDATA[
+                    $email_total = $this->model_customer_customer->getTotalCustomersEmail($customer_data);
+                    
+                    $results_emails = $this->model_customer_customer->getCustomersEmail($customer_data);
+                                                
+                    foreach ($results_emails as $result) {
+			$emails[] = $result['email'];
+                    }
+                    
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/controller/marketing/contact.php">
+		<operation>
+			<search><![CDATA[case 'product':]]></search>
+			<add position="before">
+                <![CDATA[
+                    case 'newsletter':
+                            $customer_data = array(
+				'start' => ($page - 1) * 10,
+				'limit' => 10
+                            );
+                                                    
+                            $email_total = $this->model_customer_customer->getTotalCustomersEmail($customer_data);
+                    
+                            $results_emails = $this->model_customer_customer->getCustomersEmail($customer_data);
+
+                            foreach ($results_emails as $result) {
+                                $emails[] = $result['email'];
+                            }
+			
+			break;
+                    
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<file path="admin/model/customer/customer.php">
+		<operation>
+			<search><![CDATA[public function getTotalCustomers($data = array()) {]]></search>
+			<add position="before">
+                <![CDATA[
+                    public function getTotalCustomersEmail($data = array()) {
+                        $sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer";
+
+                        $implode = array();
+
+                        if (!empty($data['filter_name'])) {
+                                $implode[] = "CONCAT(firstname, ' ', lastname) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
+                        }
+
+                        if (!empty($data['filter_email'])) {
+                                $implode[] = "email LIKE '" . $this->db->escape($data['filter_email']) . "%'";
+                        }
+
+                        if (isset($data['filter_newsletter']) && !is_null($data['filter_newsletter'])) {
+                                $implode[] = "newsletter = '" . (int)$data['filter_newsletter'] . "'";
+                        }
+
+                        if (!empty($data['filter_customer_group_id'])) {
+                                $implode[] = "customer_group_id = '" . (int)$data['filter_customer_group_id'] . "'";
+                        }
+
+                        if (!empty($data['filter_ip'])) {
+                                $implode[] = "customer_id IN (SELECT customer_id FROM " . DB_PREFIX . "customer_ip WHERE ip = '" . $this->db->escape($data['filter_ip']) . "')";
+                        }
+
+                        if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
+                                $implode[] = "status = '" . (int)$data['filter_status'] . "'";
+                        }
+
+                        if (isset($data['filter_approved']) && !is_null($data['filter_approved'])) {
+                                $implode[] = "approved = '" . (int)$data['filter_approved'] . "'";
+                        }
+
+                        if (!empty($data['filter_date_added'])) {
+                                $implode[] = "DATE(date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
+                        }
+
+                        if ($implode) {
+                                $sql .= " WHERE " . implode(" AND ", $implode);
+                        }
+
+                        $query = $this->db->query($sql);
+
+                        $registerd_total = $query->row['total'];
+
+                        $sql_email = "SELECT COUNT(email) AS total FROM " . DB_PREFIX . "newsletter";
+
+                        $query_email = $this->db->query($sql_email);
+
+                        $subcribe_total = $query_email->row['total'];
+
+                        $final_count = $registerd_total + $subcribe_total;
+
+                        return $final_count;
+                    }
+                    
+                    public function getCustomersEmail($data = array()) {
+		
+                        $sql = "SELECT email FROM " . DB_PREFIX . "newsletter ";
+
+                        if (isset($data['start']) || isset($data['limit'])) {
+                                if ($data['start'] < 0) {
+                                        $data['start'] = 0;
+                                }
+
+                                if ($data['limit'] < 1) {
+                                        $data['limit'] = 20;
+                                }
+
+                                $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+                        }
+
+                        $query = $this->db->query($sql);
+
+                        return $query->rows;
+                    }
+
+                ]]>
+			</add>
+		</operation>
+	</file>
+	<!--Newsletter in footer END-->	
+	<!--Wishlist in header START-->
+		<file path="catalog/controller/common/header.php">
+			<operation>
+				<search><![CDATA[$data['text_account']]]></search>
+				<add position="before"><![CDATA[$data['text_wishlist1'] = $this->language->get('text_wishlist1');]]></add>
+			</operation>
+		</file>	
+		<file path="catalog/language/ru-ru/common/header.php">
+			<operation>
+				<search><![CDATA[$_['text_all']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_wishlist']      = '%s';
+				$_['text_wishlist1']      = 'Гараж';
+				$_['text_account']      = 'Кабинет';
+				$_['text_login']      = 'Вход';
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/en-gb/en-gb.php">
+			<operation>
+				<search><![CDATA[$_['error_exception']]]></search>
+				<add position="before"><![CDATA[
+				$_['button_wishlist']       = 'Add to garage';
+				$_['text_home']      = 'Home';
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/ru-ru/ru-ru.php">
+			<operation>
+				<search><![CDATA[$_['text_all']]]></search>
+				<add position="before"><![CDATA[
+				$_['button_wishlist']       = 'В гараж';
+				$_['text_home']      = 'Главная';
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/en-gb/common/header.php">
+			<operation>
+				<search><![CDATA[$_['text_page']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_wishlist']      = '%s';
+				$_['text_wishlist1']      = 'Garage';
+				$_['text_account']      = 'Account';
+				$_['text_login']      = 'Login';				
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/controller/common/cart.php">
+			<operation>
+				<search><![CDATA[$data['text_empty']]]></search>
+				<add position="before"><![CDATA[$data['text_carttitle'] = $this->language->get('text_carttitle');]]></add>
+			</operation>
+		</file>	
+		<file path="catalog/language/ru-ru/common/cart.php">
+			<operation>
+				<search><![CDATA[$_['text_recurring']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_items']      = '%s<span class="hidden">%s</span>';
+				$_['text_carttitle']     = 'Корзина';
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/en-gb/common/cart.php">
+			<operation>
+				<search><![CDATA[$_['text_recurring']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_items']      = '%s<span class="hidden">%s</span>';
+				$_['text_carttitle']     = 'Cart';
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/ru-ru/checkout/cart.php">
+			<operation>
+				<search><![CDATA[$_['text_payment_cancel']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_items']      = '%s<span class="hidden">%s</span>';
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/en-gb/checkout/cart.php">
+			<operation>
+				<search><![CDATA[$_['text_payment_cancel']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_items']      = '%s<span class="hidden">%s</span>';
+				]]></add>
+			</operation>
+		</file>
+		<file path="catalog/language/ru-ru/account/wishlist.php">
+			<operation>
+				<search><![CDATA[$_['text_empty']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_wishlist'] = '%s';
+				$_['text_wishlist1'] = 'Гараж';
+				]]></add>
+			</operation>
+		</file>		
+		<file path="catalog/language/en-gb/account/wishlist.php">
+			<operation>
+				<search><![CDATA[$_['text_empty']]]></search>
+				<add position="before"><![CDATA[
+				$_['text_wishlist'] = '%s';
+				$_['text_wishlist1'] = 'Garage';
+				]]></add>
+			</operation>
+		</file>				
+	<!--Wishlist in header END-->
+	<!--Fullwidth position top on header STAR-->
+	<file path="admin/controller/design/layout.php">
+		<operation>
+			<search><![CDATA[$data['text_content_top']]]></search>
+			<add position="before"><![CDATA[$data['text_column_right4'] = $this->language->get('text_column_right4');]]>
+			</add>
+		</operation>	
+	</file>	
+	<file path="admin/language/en-gb/design/layout.php">
+		<operation>
+			<search><![CDATA[$_['text_content_top']]]></search>
+			<add position="before"><![CDATA[$_['text_column_right4']          = 'HomePage Right';]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/ru-ru/design/layout.php">
+		<operation>
+			<search><![CDATA[$_['text_content_top']]]></search>
+			<add position="before"><![CDATA[$_['text_column_right4']          = 'На главной справа';]]></add>
+		</operation>
+	</file>	
+	<file path="catalog/controller/common/home.php">
+		<operation>
+			<search><![CDATA[$data['content_top']]]></search>
+			<add position="before"><![CDATA[$data['column_right4'] = $this->load->controller('common/column_right4');]]></add>
+		</operation>	
+	</file>		
+	<file path="admin/view/template/design/layout_form.twig">
+		<operation>
+			<search><![CDATA[<table id="module-column-right"]]></search>
+			<add position="before"><![CDATA[
+                <table id="module-column-right4" class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <td class="text-center">{{ text_column_right4 }}</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for layout_module in layout_modules %}
+                    {% if layout_module.position == 'column_right4' %}
+                    <tr id="module-row{{ module_row }}">
+                      <td class="text-left"><div class="input-group">
+                          <select name="layout_module[{{ module_row }}][code]" class="form-control input-sm">
+                            {% for extension in extensions %}
+                            <optgroup label="{{ extension.name }}">
+                            {% if not extension.module %}
+                            {% if extension.code == layout_module.code %}
+                            <option value="{{ extension.code }}" selected="selected">{{ extension.name }}</option>
+                            {% else %}
+                            <option value="{{ extension.code }}">{{ extension.name }}</option>
+                            {% endif %}
+                            {% else %}
+                            {% for module in extension.module %}
+                            {% if module.code == layout_module.code %}
+                            <option value="{{ module.code }}" selected="selected">{{ module.name }}</option>
+                            {% else %}
+                            <option value="{{ module.code }}">{{ module.name }}</option>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                            </optgroup>
+                            {% endfor %}
+                          </select>
+                          <input type="hidden" name="layout_module[{{ module_row }}][position]" value="{{ layout_module.position }}" />
+                          <input type="hidden" name="layout_module[{{ module_row }}][sort_order]" value="{{ layout_module.sort_order }}" />
+                          <div class="input-group-btn"><a href="{{ layout_module.edit }}" data-toggle="tooltip" title="{{ button_edit }}" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>
+                            <button type="button" onclick="$('#module-row{{ module_row }}').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger btn-sm"><i class="fa fa fa-minus-circle"></i></button>
+                          </div>
+                        </div></td>
+                    </tr>
+                    {% set module_row = module_row + 1 %}
+                    {% endif %}
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td class="text-left"><div class="input-group">
+                          <select class="form-control input-sm">
+                            <option value=""></option>
+                            {% for extension in extensions %}
+                            <optgroup label="{{ extension.name }}">
+                            {% if not extension.module %}
+                            <option value="{{ extension.code }}">{{ extension.name }}</option>
+                            {% else %}
+                            {% for module in extension.module %}
+                            <option value="{{ module.code }}">{{ module.name }}</option>
+                            {% endfor %}
+                            {% endif %}
+                            </optgroup>
+                            {% endfor %}
+                          </select>
+                          <div class="input-group-btn">
+                            <button type="button" onclick="addModule('column-right4');" data-toggle="tooltip" title="{{ button_module_add }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i></button>
+                          </div>
+                        </div></td>
+                    </tr>
+                  </tfoot>
+                </table>		
+			]]>
+			</add>
+		</operation>	
+		<operation>
+			<search><![CDATA[#module-column-right,]]]></search>	
+			<add position="after"><![CDATA[ #module-column-right4,]]>
+			</add>
+		</operation>	
+	</file>			
+	<!--Fullwidth position top on header END-->	
+	<!--Photo carousel in product page START-->
+    <file path="catalog/controller/product/product.php">
+        <operation>
+            <search><![CDATA[$this->document->setDescription($product_info['meta_description']);]]></search>
+            <add position="before"><![CDATA[
+			$this->document->addScript('catalog/view/theme/topauto/js/slick/slick.min.js');
+			$this->document->addStyle('catalog/view/theme/topauto/js/slick/slick.css');
+			$this->document->addStyle('catalog/view/theme/topauto/js/slick/slick-theme.css');
+	]]></add>
+        </operation>
+    </file>	
+	<!--Photo carousel in product page END-->
+</modification>

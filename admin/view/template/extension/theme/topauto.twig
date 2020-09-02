@@ -1,0 +1,613 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-theme-default" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-theme-default" class="form-horizontal">
+<div class="row">
+	<div class="col-sm-2">
+		<ul class="nav nav-pills nav-stacked">
+		  <li class="active"><a href="#home" data-toggle="tab">{{ text_general }}</a></li>
+		  <li><a href="#headers" data-toggle="tab">{{ text_header }}</a></li>
+		  <li><a href="#footers" data-toggle="tab">{{ text_footer }}</a></li>
+		  <li><a href="#limits" data-toggle="tab">{{ text_product }}</a></li>
+		  <li><a href="#images" data-toggle="tab">{{ text_image }}</a></li>
+		</ul>
+	</div>
+	<div class="col-sm-10">
+		<!-- Tab panes -->
+		<div class="tab-content">
+		  <div class="tab-pane active" id="home">
+			<fieldset>
+				<legend>{{ text_general }}</legend>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-directory"><span data-toggle="tooltip" title="{{ help_directory }}">{{ entry_directory }}</span></label>
+				  <div class="col-sm-10">
+					<select name="theme_default_directory" id="input-directory" class="form-control">
+					  {% for directory in directories %}
+					  {% if directory == theme_topauto_directory %}
+					  <option value="{{ directory }}" selected="selected">{{ directory }}</option>
+					  {% else %}
+					  <option value="{{ directory }}">{{ directory }}</option>
+					  {% endif %}
+					  {% endfor %}
+					</select>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+				  <div class="col-sm-10">
+					<select name="theme_topauto_status" id="input-status" class="form-control">
+					  {% if theme_topauto_status %}
+					  <option value="1" selected="selected">{{ text_enabled }}</option>
+					  <option value="0">{{ text_disabled }}</option>
+					  {% else %}
+					  <option value="1">{{ text_enabled }}</option>
+					  <option value="0" selected="selected">{{ text_disabled }}</option>
+					  {% endif %}
+					</select>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-vklstyle">{{ entry_vklstyle }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="radio-inline well text-center">
+								<label for="style1"><img src="../admin/view/image/topauto/style1.png" class="img-responsive"><br/>{{ text_vklstyle }}</label>								
+								<input type="radio" id="style1" style="margin: 0;" name="theme_topauto_vklstyle" value="1" {% if (theme_topauto_vklstyle) %} {{ 'checked' }} {% endif %} />
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="radio-inline well text-center">
+								<label for="style2"><img src="../admin/view/image/topauto/style2.png" class="img-responsive"><br/>{{ text_vklstyle1 }}</label>								
+								<input type="radio" id="style2" style="margin: 0;" name="theme_topauto_vklstyle" value="2" {% if (not theme_topauto_vklstyle) %} {{ 'checked' }}{% endif %} />
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="radio-inline well text-center">
+								<label for="style3"><img src="../admin/view/image/topauto/style3.png" class="img-responsive"><br/>{{ text_vklstyle2 }}</label>								
+								<input type="radio" id="style3" style="margin: 0;" name="theme_topauto_vklstyle" value="3" {% if (not theme_topauto_vklstyle) %} {{ 'checked' }}{% endif %} />
+							</div>
+						</div>
+					</div>
+				  </div>
+				</div>					
+			</fieldset>
+		  </div>
+		  <div class="tab-pane" id="headers">
+			<fieldset>
+				<legend>{{ text_header }}</legend>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-menustyle">{{ entry_menustyle }}</label>
+				  <div class="col-sm-10">
+					<select name="theme_topauto_menustyle" id="input-menustyle" class="form-control">
+					  {% if theme_topauto_menustyle %}
+					  <option value="1" selected="selected">{{ text_menustyle }}</option>
+					  <option value="0">{{ text_menustyle1 }}</option>
+					  {% else %}
+					  <option value="1">{{ text_menustyle }}</option>
+					  <option value="0" selected="selected">{{ text_menustyle1 }}</option>
+					  {% endif %}
+					</select>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-phone">{{ entry_phone }}</label>
+				  <div class="col-sm-10">
+					<input type="text" name="theme_topauto_phone" value="{{ theme_topauto_phone }}" placeholder="{{ entry_phone }}" id="input-phone" class="form-control" />
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-phone1">{{ entry_phone1 }}</label>
+				  <div class="col-sm-10">
+					<input type="text" name="theme_topauto_phone1" value="{{ theme_topauto_phone1 }}" placeholder="{{ entry_phone1 }}" id="input-phone1" class="form-control" />
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-phone2">{{ entry_phone2 }}</label>
+				  <div class="col-sm-10">
+					<input type="text" name="theme_topauto_phone2" value="{{ theme_topauto_phone2 }}" placeholder="{{ entry_phone2 }}" id="input-phone2" class="form-control" />
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-phone3">{{ entry_phone3 }}</label>
+				  <div class="col-sm-10">
+					<input type="text" name="theme_topauto_phone3" value="{{ theme_topauto_phone3 }}" placeholder="{{ entry_phone3 }}" id="input-phone3" class="form-control" />
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="col-sm-2 control-label" for="input-email">{{ entry_email }}</label>
+				  <div class="col-sm-10">
+					<input type="text" name="theme_topauto_email" value="{{ theme_topauto_email }}" placeholder="{{ entry_email }}" id="input-email" class="form-control" />
+				  </div>
+				</div>				
+				<legend>{{ text_dopmenu }}</legend>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ entry_status }}</label>
+					<div class="col-sm-10">
+						<div class="radio-inline">
+							<input type="radio" name="theme_topauto_menu_vkl" value="1" {% if (theme_topauto_menu_vkl) %} {{ 'checked' }} {% endif %} />
+							<label>{{ text_enabled }}</label>
+						</div>
+						<div class="radio-inline">
+							<input type="radio" name="theme_topauto_menu_vkl" value="0" {% if (not theme_topauto_menu_vkl) %} {{ 'checked' }}{% endif %} />
+							<label>{{ text_disabled }}</label>
+						</div>
+					</div>
+				</div>				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_punkts }}</label>
+					<div class="col-sm-10">
+						<table id="main-menu-items" class="table table-bordered">
+							<thead>
+								<tr>
+									<td>{{ text_text }}</td>
+									<td>{{ text_link }}</td>
+									<td>{{ text_sort }}</td>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody>
+							{% set item_row_main = 0 %}
+							{% for theme_topauto_menu_punkt in theme_topauto_menu_punkts %}
+								<tr id="item-row-main{{ item_row_main }}">
+									<td class="text-left">
+										{% for language in languages %}
+										<div class="input-group pull-left">
+											<span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+											<input class="form-control" type="text" name="theme_topauto_menu_punkt[{{ item_row_main }}][title][{{ language.language_id }}]" value="{{ theme_topauto_menu_punkt['title'][language['language_id']] }}" />
+										</div>
+										{% endfor %}
+									</td>
+									<td class="text-left">
+										{% for language in languages %}
+										<div class="input-group pull-left">
+											<span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+												<input class="form-control" type="text" name="theme_topauto_menu_punkt[{{ item_row_main }}][link][{{ language.language_id }}]" value="{{ theme_topauto_menu_punkt['link'][language['language_id']] }}" />
+										</div>
+										{% endfor %}
+									</td>
+									<td class="text-left">
+										<input  class="form-control" type="text" name="theme_topauto_menu_punkt[{{ item_row_main }}][sort]" value="{{ theme_topauto_menu_punkt.sort }}" />
+									</td>
+									<td class="text-right">
+										<a class="btn btn-danger" onclick="$('#item-row-main{{ item_row_main }}').remove();" data-toggle="tooltip" title="{{ text_remove }}"><i class="fa fa-close"></i></a>
+									</td>
+								</tr>
+							{% set item_row_main = item_row_main + 1 %}
+							{% endfor %}
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3"></td>
+									<td class="text-right"><a class="btn btn-primary" onclick="addItemMain();" data-toggle="tooltip" title="{{ text_add }}"><i class="fa fa-plus-circle"></i></a></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>				
+			</fieldset>
+		  </div>
+		  <div class="tab-pane" id="footers">
+		  <fieldset>
+			<legend>{{ text_footer }}</legend>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-vklcontakt">{{ entry_vklcontakt }}</label>
+              <div class="col-sm-10">
+                <select name="theme_topauto_vklcontakt" id="input-vklcontakt" class="form-control">
+				  {% if theme_topauto_vklcontakt %}
+                  <option value="1" selected="selected">{{ text_enabled }}</option>
+                  <option value="0">{{ text_disabled }}</option>
+                  {% else %}
+                  <option value="1">{{ text_enabled }}</option>
+                  <option value="0" selected="selected">{{ text_disabled }}</option>
+                  {% endif %}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-vklnewsletter">{{ entry_vklnewsletter }}</label>
+              <div class="col-sm-10">
+                <select name="theme_topauto_vklnewsletter" id="input-vklnewsletter" class="form-control">
+                  {% if theme_topauto_vklnewsletter %}
+				  <option value="1" selected="selected">{{ text_enabled }}</option>
+                  <option value="0">{{ text_disabled }}</option>
+                  {% else %}
+                  <option value="1">{{ text_enabled }}</option>
+                  <option value="0" selected="selected">{{ text_disabled }}</option>
+                  {% endif %}
+                </select>
+              </div>
+            </div>			
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-vklcopy">{{ entry_vklcopy }}</label>
+              <div class="col-sm-10">
+                <select name="theme_topauto_vklcopy" id="input-vklcopy" class="form-control">
+				  {% if theme_topauto_vklcopy %}
+                  <option value="1" selected="selected">{{ text_enabled }}</option>
+                  <option value="0">{{ text_disabled }}</option>
+                  {% else %}
+                  <option value="1">{{ text_enabled }}</option>
+                  <option value="0" selected="selected">{{ text_disabled }}</option>
+                  {% endif %}
+                </select>
+              </div>
+            </div>
+			<legend>{{ text_socials }}</legend>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-soc1">{{ entry_soc1 }}</label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_topauto_soc1" value="{{ theme_topauto_soc1 }}" placeholder="{{ entry_soc1 }}" id="input-soc1" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-soc2">{{ entry_soc2 }}</label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_topauto_soc2" value="{{ theme_topauto_soc2 }}" placeholder="{{ entry_soc2 }}" id="input-soc2" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-soc3">{{ entry_soc3 }}</label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_topauto_soc3" value="{{ theme_topauto_soc3 }}" placeholder="{{ entry_soc3 }}" id="input-soc3" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-soc4">{{ entry_soc4 }}</label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_topauto_soc4" value="{{ theme_topauto_soc4 }}" placeholder="{{ entry_soc4 }}" id="input-soc4" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-soc5">{{ entry_soc5 }}</label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_topauto_soc5" value="{{ theme_topauto_soc5 }}" placeholder="{{ entry_soc5 }}" id="input-soc5" class="form-control" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="input-soc6">{{ entry_soc6 }}</label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_topauto_soc6" value="{{ theme_topauto_soc6 }}" placeholder="{{ entry_soc6 }}" id="input-soc6" class="form-control" />
+              </div>
+            </div>			
+			<legend>{{ text_footerbuttons }}</legend>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ entry_status }}</label>
+					<div class="col-sm-10">
+						<div class="radio-inline">
+							<input type="radio" name="theme_topauto_footer_buttons_vkl" value="1" {% if (theme_topauto_footer_buttons_vkl) %} {{ 'checked' }} {% endif %} />
+							<label>{{ text_enabled }}</label>
+						</div>
+						<div class="radio-inline">
+							<input type="radio" name="theme_topauto_footer_buttons_vkl" value="0" {% if (not theme_topauto_footer_buttons_vkl) %} {{ 'checked' }}{% endif %} />
+							<label>{{ text_disabled }}</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">{{ text_punkts }}</label>
+					<div class="col-sm-10">
+						<table id="topauto-footer-buttons-items" class="table table-bordered">
+							<thead>
+								<tr>
+									<td>{{ text_text }}</td>
+									<td>{{ text_link }}</td>
+									<td>{{ text_sort }}</td>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody>
+							{% set item_row_footer = 0 %}
+							{% for theme_topauto_footer_buttons_punkt in theme_topauto_footer_buttons_punkts %}
+								<tr id="item-row-footer{{ item_row_footer }}">
+									<td class="text-left">
+										{% for language in languages %}
+										<div class="input-group pull-left">
+											<span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+											<input class="form-control" type="text" name="theme_topauto_footer_buttons_punkt[{{ item_row_footer }}][title][{{ language.language_id }}]" value="{{ theme_topauto_footer_buttons_punkt['title'][language['language_id']] }}" />
+										</div>
+										{% endfor %}
+									</td>
+									<td class="text-left">
+										{% for language in languages %}
+										<div class="input-group pull-left">
+											<span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+												<input class="form-control" type="text" name="theme_topauto_footer_buttons_punkt[{{ item_row_footer }}][link][{{ language.language_id }}]" value="{{ theme_topauto_footer_buttons_punkt['link'][language['language_id']] }}" />
+										</div>
+										{% endfor %}
+									</td>
+									<td class="text-left">
+										<input  class="form-control" type="text" name="theme_topauto_footer_buttons_punkt[{{ item_row_footer }}][sort]" value="{{ theme_topauto_footer_buttons_punkt.sort }}" />
+									</td>
+									<td class="text-right">
+										<a class="btn btn-danger" onclick="$('#item-row-footer{{ item_row_footer }}').remove();" data-toggle="tooltip" title="{{ text_remove }}"><i class="fa fa-close"></i></a>
+									</td>
+								</tr>
+							{% set item_row_footer = item_row_footer + 1 %}
+							{% endfor %}
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3"></td>
+									<td class="text-right"><a class="btn btn-primary" onclick="addItemFooter();" data-toggle="tooltip" title="{{ text_add }}"><i class="fa fa-plus-circle"></i></a></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>	
+			</fieldset>
+		  </div>
+		  <div class="tab-pane" id="limits">
+		  <fieldset>
+			<legend>{{ text_product }}</legend>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-catalog-limit"><span data-toggle="tooltip" title="{{ help_product_limit }}">{{ entry_product_limit }}</span></label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_topauto_product_limit" value="{{ theme_topauto_product_limit }}" placeholder="{{ entry_product_limit }}" id="input-catalog-limit" class="form-control" />
+				{% if error_product_limit %}
+                <div class="text-danger">{{ error_product_limit }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group required">
+              <label class="col-sm-2 control-label" for="input-description-limit"><span data-toggle="tooltip" title="{{ help_product_description_length }}">{{ entry_product_description_length }}</span></label>
+              <div class="col-sm-10">
+                <input type="text" name="theme_topauto_product_description_length" value="{{ theme_topauto_product_description_length }}" placeholder="{{ entry_product_description_length }}" id="input-description-limit" class="form-control" />
+				{% if error_product_description_length %}
+                <div class="text-danger">{{ error_product_description_length }}</div>
+                {% endif %}
+              </div>
+            </div>
+		  </fieldset>
+		  </div>
+		  <div class="tab-pane" id="images">
+			<fieldset>
+				<legend>{{ text_image }}</legend>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-category-width">{{ entry_image_category }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_category_width" value="{{ theme_topauto_image_category_width }}" placeholder="{{ entry_width }}" id="input-image-category-width" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_category_height" value="{{ theme_topauto_image_category_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_category %}
+					<div class="text-danger">{{ error_image_category }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-thumb-width">{{ entry_image_thumb }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_thumb_width" value="{{ theme_topauto_image_thumb_width }}" placeholder="{{ entry_width }}" id="input-image-thumb-width" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_thumb_height" value="{{ theme_topauto_image_thumb_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_thumb %}
+					<div class="text-danger">{{ error_image_thumb }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-popup-width">{{ entry_image_popup }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_popup_width" value="{{ theme_topauto_image_popup_width }}" placeholder="{{ entry_width }}" id="input-image-popup-width" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_popup_height" value="{{ theme_topauto_image_popup_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_popup %}
+					<div class="text-danger">{{ error_image_popup }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-product-width">{{ entry_image_product }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_product_width" value="{{ theme_topauto_image_product_width }}" placeholder="{{ entry_width }}" id="input-image-product-width" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_product_height" value="{{ theme_topauto_image_product_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_product %}
+					<div class="text-danger">{{ error_image_product }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-additional-width">{{ entry_image_additional }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_additional_width" value="{{ theme_topauto_image_additional_width }}" placeholder="{{ entry_width }}" id="input-image-additional-width" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_additional_height" value="{{ theme_topauto_image_additional_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_additional %}
+					<div class="text-danger">{{ error_image_additional }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-related">{{ entry_image_related }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_related_width" value="{{ theme_topauto_image_related_width }}" placeholder="{{ entry_width }}" id="input-image-related" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_related_height" value="{{ theme_topauto_image_related_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_related %}
+					<div class="text-danger">{{ error_image_related }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-compare">{{ entry_image_compare }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_compare_width" value="{{ theme_topauto_image_compare_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_compare_height" value="{{ theme_topauto_image_compare_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_compare %}
+					<div class="text-danger">{{ error_image_compare }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-wishlist">{{ entry_image_wishlist }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_wishlist_width" value="{{ theme_topauto_image_wishlist_width }}" placeholder="{{ entry_width }}" id="input-image-wishlist" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_wishlist_height" value="{{ theme_topauto_image_wishlist_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_wishlist %}
+					<div class="text-danger">{{ error_image_wishlist }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-cart">{{ entry_image_cart }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_cart_width" value="{{ theme_topauto_image_cart_width }}" placeholder="{{ entry_width }}" id="input-image-cart" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_cart_height" value="{{ theme_topauto_image_cart_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_cart %}
+					<div class="text-danger">{{ error_image_cart }}</div>
+					{% endif %}
+				  </div>
+				</div>
+				<div class="form-group required">
+				  <label class="col-sm-2 control-label" for="input-image-location">{{ entry_image_location }}</label>
+				  <div class="col-sm-10">
+					<div class="row">
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_location_width" value="{{ theme_topauto_image_location_width }}" placeholder="{{ entry_width }}" id="input-image-location" class="form-control" />
+					  </div>
+					  <div class="col-sm-6">
+						<input type="text" name="theme_topauto_image_location_height" value="{{ theme_topauto_image_location_height }}" placeholder="{{ entry_height }}" class="form-control" />
+					  </div>
+					</div>
+					{% if error_image_location %}
+					<div class="text-danger">{{ error_image_location }}</div>
+					{% endif %}
+				  </div>
+				</div>
+			</fieldset>
+		  </div>
+		</div>          
+	</div>
+</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+var item_row_main = {{ item_row_main }};
+
+function addItemMain() {
+  html  = '<tr id="item-row-main' + item_row_main + '">';
+  html += '<td class="text-left">';
+	{% for language in languages %}
+	html += '<div class="input-group pull-left"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>';
+	html += '<input class="form-control" type="text" name="theme_topauto_menu_punkt[' + item_row_main + '][title][{{ language.language_id }}]" value="" />';
+	html += '</div>';
+	{% endfor %}
+	html += '</td>';
+	html += '<td class="text-left">';
+	{% for language in languages %}
+	html += '<div class="input-group pull-left"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>';
+	html += '<input class="form-control"  type="text" name="theme_topauto_menu_punkt[' + item_row_main + '][link][{{ language.language_id }}]" value="" />';
+	html += '</div>';
+	{% endfor %}
+	html += '</td>';
+	html += '<td class="text-left"><input class="form-control" type="text" name="theme_topauto_menu_punkt[' + item_row_main + '][sort]" size="1" value="0" /></td>';
+	html += '<td class="text-right"><a class="btn btn-danger" onclick="$(\'#item-row-main' + item_row_main  + '\').remove();" data-toggle="tooltip" title="{{ text_remove }}"><i class="fa fa-close"></i></a></td>';
+	html += '</tr>'; 
+	
+	$('#main-menu-items tbody').append(html);;
+	
+	item_row_main++;
+}
+
+var item_row_footer = {{ item_row_footer }};
+
+function addItemFooter() {
+  html  = '<tr id="item-row-footer' + item_row_footer + '">';
+  html += '<td class="text-left">';
+	{% for language in languages %}
+	html += '<div class="input-group pull-left"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>';
+	html += '<input class="form-control" type="text" name="theme_topauto_footer_buttons_punkt[' + item_row_footer + '][title][{{ language.language_id }}]" value="" />';
+	html += '</div>';
+	{% endfor %}
+	html += '</td>';
+	html += '<td class="text-left">';
+	{% for language in languages %}
+	html += '<div class="input-group pull-left"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>';
+	html += '<input class="form-control"  type="text" name="theme_topauto_footer_buttons_punkt[' + item_row_footer + '][link][{{ language.language_id }}]" value="" />';
+	html += '</div>';
+	{% endfor %}
+	html += '</td>';
+	html += '<td class="text-left"><input class="form-control" type="text" name="theme_topauto_footer_buttons_punkt[' + item_row_footer + '][sort]" size="1" value="0" /></td>';
+	html += '<td class="text-right"><a class="btn btn-danger" onclick="$(\'#item-row-footer' + item_row_footer  + '\').remove();" data-toggle="tooltip" title="{{ text_remove }}"><i class="fa fa-close"></i></a></td>';
+	html += '</tr>'; 
+	
+	$('#topauto-footer-buttons-items tbody').append(html);;
+	
+	item_row_footer++;
+}
+</script>
+{{ footer }}

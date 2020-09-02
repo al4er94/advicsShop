@@ -1,0 +1,135 @@
+<div class="blackfon"></div>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-3">
+        <ul class="list-unstyled">
+		{% if theme_topauto_phone %}
+		  <li class="fphone"><i class="fa fa-phone"></i>{{ theme_topauto_phone }}</li>
+		{% endif %}
+		{% if theme_topauto_phone1 %}
+		  <li class="fphone"><i class="fa fa-phone"></i>{{ theme_topauto_phone1 }}</li>
+		{% endif %}
+		{% if theme_topauto_phone2 %}
+		  <li class="fphone"><i class="fa fa-phone"></i>{{ theme_topauto_phone2 }}</li>
+		{% endif %}
+		{% if theme_topauto_phone3 %}
+		  <li class="fphone"><i class="fa fa-phone"></i>{{ theme_topauto_phone3 }}</li>
+		{% endif %}
+		{% if address %}
+		  <li class="address"><i class="fa fa-map-marker"></i><span>{{ address }}</span></li>
+		{% endif %}	
+		{% if open %}
+		  <li class="openn"><i class="fa fa-clock-o"></i>{{ open }}</li>
+		{% endif %}	
+		{% if theme_topauto_email %}
+		  <li class="email"><a href="mailto:{{ theme_topauto_email }}"><i class="fa fa-envelope-o"></i> {{ theme_topauto_email }}</a></li>
+		{% endif %}	
+        </ul>
+      </div>
+	  {% if categories %}
+      <div class="col-sm-6 col-md-3">
+        <h5>{{ text_catalog }}</h5>
+        <ul class="list-unstyled links">
+		  {% for category in categories %}
+          <li><a href="{{ category.href }}">{{ category.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}  
+	  {% if informations %}
+      <div class="col-sm-6 col-md-3">
+        <h5>{{ text_information }}</h5>
+        <ul class="list-unstyled links">
+		  {% for information in informations %}
+          <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+          {% endfor %}
+		  {% if theme_topauto_vklcontakt == 1 %}
+		  <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+		  {% endif %}
+        </ul>
+      </div>
+      {% endif %}  
+      <div class="col-sm-6 col-md-3">
+		{% if footer_buttons_vkl %}
+		{% for item in footer_buttons %}
+		<a href="{{ item['link'][language_id] }}" class="btn btn-primary btn-block btns">{{ item['title'][language_id] }}</a>
+		{% endfor %}
+		{% endif %} 
+		{% if theme_topauto_vklnewsletter == 1 %}
+		<div class="newsletter">
+			<div class="title">{{ text_ntitle }}</div>
+			<div class="input-group">
+				<input type="text" class="form-control" id="input-newsletter" placeholder="{{ text_newsletter_text }}" value="" name="newsletter">
+				<span class="input-group-btn">
+					<input type="button" id="subcribe" class="btn btn-primary" value="{{ text_subcribe }}">
+				</span>						
+			</div>
+			<div class="subtitle">{{ text_nsubtitle }}</div>
+			<div id="info-message"></div>
+		</div>	
+		{% endif %}
+		{% if theme_topauto_soc1  or  theme_topauto_soc2  or  theme_topauto_soc3  or  theme_topauto_soc4  or  theme_topauto_soc5  or  theme_topauto_soc6 %} 
+		<div class="social">
+		<div class="title">{{ text_social }}</div>
+		{% if theme_topauto_soc1 %}
+		  <div class="soc"><a href="{{ theme_topauto_soc1 }}" target="_blank"><i class="fa fa-vk"></i></a></div>
+		{% endif %} 
+		{% if theme_topauto_soc2 %}
+		  <div class="soc"><a href="{{ theme_topauto_soc2 }}" target="_blank"><i class="fa fa-odnoklassniki"></i></a></div>
+		{% endif %} 
+		{% if theme_topauto_soc3 %}
+		  <div class="soc"><a href="{{ theme_topauto_soc3 }}" target="_blank"><i class="fa fa-facebook"></i></a></div>
+		{% endif %} 
+		{% if theme_topauto_soc4 %}
+		  <div class="soc"><a href="{{ theme_topauto_soc4 }}" target="_blank"><i class="fa fa-google-plus"></i></a></div>
+		{% endif %} 
+		{% if theme_topauto_soc5 %}
+		  <div class="soc"><a href="{{ theme_topauto_soc5 }}" target="_blank"><i class="fa fa-instagram"></i></a></div>
+		{% endif %} 
+		{% if theme_topauto_soc6 %}
+		  <div class="soc"><a href="{{ theme_topauto_soc6 }}" target="_blank"><i class="fa fa-twitter"></i></a></div>
+		{% endif %} 
+		</div>
+		{% endif %} 
+      </div>
+    </div>
+    <hr>
+    {% if theme_topauto_vklcopy == 1 %}
+	<p>{{ powered }}</p>
+	{% endif %} 
+  </div>
+</footer>
+<script><!--
+     function validateEmail($email) {
+       var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+       return emailReg.test( $email );
+     }
+    $(document).ready(function(){
+        $('#subcribe').click(function(){
+            var email = $('#input-newsletter').val();
+           if(email == ''){
+               var error = 'Введите email адрес!';
+            }
+            if( !validateEmail(email)) {
+                var error = 'Введите правильный email адрес!';
+            }
+            if(error != null){
+                $('#info-message').html('');
+                $('#info-message').append('<div class=\"error\">' + error + '</div>');
+           } else {
+                var dataString = 'email='+ email;
+                $.ajax({
+                    url: 'index.php?route=common/footer/addToNewsletter',
+                    type: 'post',
+                    data: dataString,
+                    success: function(html) {
+                      $('#info-message').append('<div class=\"success\">' + html + '</div>');
+                    }
+                });
+            }
+        })
+    });
+//--></script>
+<script src="catalog/view/theme/topauto/js/main.js"></script>
+</body></html>
