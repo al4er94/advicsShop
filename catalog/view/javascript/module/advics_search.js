@@ -13,7 +13,7 @@ var advicsSearch ={
             },
             success: function(resp) {
                 $('#searchForm #model').html(advicsSearch.getHtmlOption(resp, 'model'));
-                $('#searchButton').attr('disabled');
+                $('#searchButton').attr('disabled', true);
             }
         });
     },   
@@ -28,7 +28,7 @@ var advicsSearch ={
             },
             success: function(resp) {
                 $('#searchForm #chassis').html(advicsSearch.getHtmlOption(resp, 'chassis'));
-                $('#searchButton').attr('disabled');
+                $('#searchButton').attr('disabled', true);
             }
         });
     },
@@ -44,6 +44,26 @@ var advicsSearch ={
             html += '<option value = "'+resp[i]['id']+'">'+resp[i][type]+'</option>';
         }
         return html;
+    },
+    
+    drowPrice:function(price){
+        var html =''
+        for(var i=0; i<price.length; i++){
+            html += '<tr>';
+            html += '<td>' + price[i]['maker'] + '</td>';
+            html += '<td>' + price[i]['model'] + '</td>';
+            html += '<td>' + price[i]['chassis'] + '</td>';
+            html += '<td>' + price[i]['engine'] + '</td>';
+            html += '<td>' + price[i]['year'] + '</td>';
+            html += '<td>' + price[i]['front_pads'] + '</td>';
+            html += '<td>' + price[i]['rear_pads'] + '</td>';
+            html += '<td>' + price[i]['front_disk'] + '</td>';
+            html += '<td>' + price[i]['rear_disk'] + '</td>';
+            html += '<td></td>';
+            html += '<td></td>';
+            html += '</tr>';
+        }
+        return html ;
     },
     
     unblockSearchButton:function(){
@@ -63,7 +83,7 @@ var advicsSearch ={
                 chassis:chassis
             },
             success: function(resp) {
-                console.log(resp);
+                $('.table #priceTable').html(advicsSearch.drowPrice(resp));
             }
         });
     }

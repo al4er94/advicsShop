@@ -29,7 +29,7 @@
      <div class="content">
         <form method="POST" action="">
             <button type="submit" name='update_prod_bd' value="">Обновить</button>
-        </form>
+        </form> 
      </div>
       
   </div>

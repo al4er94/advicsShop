@@ -20,7 +20,7 @@
             <button disabled id="searchButton" onclick = "advicsSearch.searchPrice()"> Подобрать </button>
         </div>
         <div class="row">
-            <table class="table-3">
+            <table class="table table-3">
               <thead>
                 <tr>
                   <th>Марка</th>
@@ -36,7 +36,7 @@
                   <th>Рем.к. задний</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id = "priceTable">
                 <tr>
                   <td data-label="Марка">1</td>
                   <td data-label="Модель">2</td>
