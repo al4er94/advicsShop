@@ -794,3 +794,28 @@ Stack trace:
 2020-09-03 22:44:20 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
 2020-09-03 22:54:24 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
 2020-09-03 22:55:21 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-04 22:24:10 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-04 22:49:16 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-06 14:10:59 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-06 17:20:15 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-06 17:36:41 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-06 17:58:10 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-06 21:03:15 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-06 21:56:35 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-06 22:01:26 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-06 22:50:02 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-07 22:08:44 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-07 22:19:05 - PHP Notice:  Undefined index: id in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\controller\module\advics_search.php on line 143
+2020-09-07 22:19:05 - PHP Notice:  Undefined index: type in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\controller\module\advics_search.php on line 143
+2020-09-07 22:19:05 - PHP Notice:  Undefined variable: query in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\model\module\advics_search.php on line 33
+2020-09-07 22:19:05 - PHP Notice:  Trying to get property of non-object in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\model\module\advics_search.php on line 33
+2020-09-07 22:19:05 - PHP Warning:  Invalid argument supplied for foreach() in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\model\module\advics_search.php on line 33
+2020-09-07 22:26:49 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-08 21:13:03 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-08 22:30:21 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-09 21:30:00 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-09 21:35:07 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-09 21:40:42 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-09 22:48:38 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-09 22:49:27 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10
+2020-09-09 22:51:16 - PHP Notice:  Undefined variable: class in C:\local\OpenServer\domains\advics-shop.ru\upload\catalog\view\theme\default\template\module\advics_search.tpl on line 10

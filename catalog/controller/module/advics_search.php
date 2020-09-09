@@ -150,5 +150,14 @@ class ControllerModuleAdvicsSearch extends Controller {
        $this->response->setOutput(json_encode($this->model_module_advics_search->getPrice($_POST['maker'], $_POST['model'], $_POST['chassis'])));
         
     }
+    
+    public function inputInBd(){
+     //  $this->load->model('module/advics_search');
+     //  $idArr = $this->model_module_advics_search->getId(50);
+     //  foreach ($idArr as $chasis){
+     //      $idArr = $this->model_module_advics_search->insertPrice($chasis['id'], $chasis['model_id']);
+     //  }
+        //INSERT INTO `advics_shop`.`oc_advics_price_list` (`maker_id`, `model_id`, `chassis_id`) VALUES ('19', '35', '51');
 
+    }
 }

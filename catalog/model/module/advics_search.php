@@ -30,8 +30,18 @@ class ModelModuleAdvicsSearch extends Model {
                 break;
         }
         $modelArray = array();
+        $hondaArray = [84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,103,108,121,123,127];
         foreach ($query->rows as $product) {
-            $modelArray[] = $product;
+            //Костыль для хонды
+            if($type == 'model' && $id == '13'){
+                if(in_array($product['id'], $hondaArray)){
+                    $modelArray[] = $product;                      
+                }else{
+                    continue;
+                }              
+            }else{
+                $modelArray[] = $product;                
+            }
         }
         return $modelArray;
     }
@@ -51,6 +61,20 @@ class ModelModuleAdvicsSearch extends Model {
             $prcieArray[] = $priceList;
         }
         return $prcieArray;
+    }
+    
+    public function getId($id){
+        $query = $this->db->query("SELECT * FROM advics_shop.oc_advics_chassis WHERE id > $id");
+        
+        $prcieArray = array();
+        foreach ($query->rows as $priceList) {
+            $prcieArray[] = $priceList;
+        }
+        return $prcieArray;
+    }
+    
+    public function insertPrice($chassis_id, $model_id){
+        $query = $this->db->query("INSERT INTO `advics_shop`.`oc_advics_price_list` (`maker_id`, `model_id`, `chassis_id`) VALUES ('19', '$model_id', '$chassis_id')");
     }
 
 }
