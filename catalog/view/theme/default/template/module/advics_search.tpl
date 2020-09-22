@@ -7,10 +7,11 @@
 		<li> <a href = "<?php echo $breadcrumb['href'];?>"> <?php echo $breadcrumb['text'];?></a></li> 
 	<?php } ?>
  </ul>
-    <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
+    <div id="content" class="advics_search"><?php echo $content_top; ?>
         <h1><?php echo $title; ?></h1>
         <div id="searchForm">
             <form name ="searchAdvics">
+                <span class="custom-dropdown big">
                 <select name="maker" class="active" id ="maker" onchange="advicsSearch.getModels(document.searchAdvics.maker.value);">
                     <option value="" selected="">Выберите производителя</option>
                     <option value="1"> </option>
@@ -45,14 +46,20 @@
                     <option value="30">TOYOTA</option>
                     <!--<option value="31">VOLVO</option>-->
                 </select>
-                <select name="model" class="" id ="model" onchange="advicsSearch.getChasis(document.searchAdvics.model.value);"><option value="">Выберите модель</option></select>
-                <select name="chassis" class="" id ="chassis" onchange="advicsSearch.unblockSearchButton();">
-                <option value="">Выберите кузов</option>
-                </select>
+                </span>
+                <span class="custom-dropdown big">  
+                    <select name="model" class="" id ="model" onchange="advicsSearch.getChasis(document.searchAdvics.model.value);"><option value="">Выберите модель</option></select>
+                </span>
+                <span class="custom-dropdown big">
+                    <select name="chassis" class="custom-dropdown big" id ="chassis" onchange="advicsSearch.unblockSearchButton();">
+                    <option value="">Выберите кузов</option>
+                    </select>
+                </span>
             </form>
-            <button disabled id="searchButton" onclick = "advicsSearch.searchPrice()"> Подобрать </button>
+			<div class = "searchButton">
+            <button disabled id="searchButton" onclick = "advicsSearch.searchPrice()"> Подобрать запчасть </button></div>
         </div>
-        <div class="row">
+        <div class="table-wrap">
             <table class="table table-3">
               <thead>
                 <tr>
@@ -65,24 +72,10 @@
                   <th>Задние колодки</th>
                   <th>Передний диск</th>
                   <th>Задний диск</th>
-                  <th>Рем.к. передний</th>
-                  <th>Рем.к. задний</th>
                 </tr>
               </thead>
               <tbody id = "priceTable">
-                <tr>
-                  <td data-label="Марка">1</td>
-                  <td data-label="Модель">2</td>
-                  <td data-label="Кузов">3</td>
-                  <td data-label="Объём">4</td>
-                  <td data-label="Период выпуска">5</td>
-                  <td data-label="Передние дисковые колодки">6</td>
-                  <td data-label="Задние дисковые колодки">7</td>
-                  <td data-label="Передний тормозной диск">8</td>
-                  <td data-label="Задний тормозной диск">9</td>
-                  <td data-label="Рем комплект передний">10</td>
-                  <td data-label="Рем комплект задний">11</td>
-                </tr>
+
               </tbody>
             </table>
         </div>

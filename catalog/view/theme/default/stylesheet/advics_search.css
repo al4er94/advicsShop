@@ -4,16 +4,26 @@ table.table-3 {
     width: 100%;
 }
 table.table-3 tr {
+	    font-size: 14px;
+		color: #1e226d;
 		background-color: #f8f8f8;
+	    text-shadow: 0 -1px 0 rgb(0 0 0 / 5%);
 }
-
+table.table-3 thead tr{
+	background-color: #1e226d;
+    color: #f1ffe8;
+    text-shadow: 0 -2px 0 rgb(0 0 0 / 78%);
+}
+table.table-3 tr.count{
+	background-color: #13154c3b; 
+}
 table.table-3 th,
 table.table-3 td {
 		text-align: left;
 	 	padding: 8px;
 	border: 1px solid #ddd;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   	table.table-3 {
 		border: 0;
   	}
@@ -38,6 +48,7 @@ table.table-3 td {
   	}
   
 	table.table-3 td {
+		height: 30px;
     	display: block;
     	text-align: right;
 	}
@@ -83,4 +94,129 @@ table.table-2 th{
 		display: block;
 		text-align: center;
 	}
+}
+
+.big {
+  font-size: 1.2em;
+}
+
+
+/* Custom dropdown */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px; /* demo only */
+}
+
+.custom-dropdown select {
+  cursor:pointer;
+  background-color: #1e226d;
+  color: #fff;
+  font-size: inherit;
+  padding: .5em;
+  padding-right: 2.5em;	
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.custom-dropdown::before,
+.custom-dropdown::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom-dropdown::after { /*  Custom dropdown arrow */
+  content: "\25BC";
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.custom-dropdown::before { /*  Custom dropdown arrow cover */
+  width: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.custom-dropdown select[disabled] {
+  color: rgba(0,0,0,.3);
+}
+
+.custom-dropdown select[disabled]::after {
+  color: rgba(0,0,0,.1);
+}
+
+.custom-dropdown::before {
+  background-color: rgba(0,0,0,.15);
+}
+
+.custom-dropdown::after {
+  color: rgba(0,0,0,.4);
+}
+
+.advics_search h1{
+    text-align: center;
+}
+
+#searchForm{
+    display: flex;
+    flex-flow: column;
+}
+
+#searchForm #searchButton{
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  padding: .8em 1em calc(.8em + 3px);
+  border-radius: 3px;
+  background: rgb(241 110 110);
+  box-shadow: 0 -3px rgb(237 74 74) inset;
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 44%);
+  transition: 0.2s;
+}
+
+
+
+#searchForm form[name='searchAdvics']{
+   display: flex;
+       flex-flow: column;
+   justify-content: center;
+}
+
+#searchForm select{
+    width:100%;
+}
+
+#searchForm .searchButton{
+	display:flex;
+	justify-content:center;
+}
+
+#searchForm .searchButton #searchButton{
+	/*width: 80%; */
+}
+
+#content .table-wrap{
+	margin-top: 10px;
+}
+
+@media screen and (min-width: 720px) {
+   #searchForm form[name='searchAdvics']{
+     flex-flow: initial;
+   }
+    #searchForm select{
+        width:auto;
+    }
+
 }

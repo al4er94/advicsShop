@@ -49,18 +49,16 @@ var advicsSearch ={
     drowPrice:function(price){
         var html =''
         for(var i=0; i<price.length; i++){
-            html += '<tr>';
-            html += '<td>' + price[i]['maker'] + '</td>';
-            html += '<td>' + price[i]['model'] + '</td>';
-            html += '<td>' + price[i]['chassis'] + '</td>';
-            html += '<td>' + price[i]['engine'] + '</td>';
-            html += '<td>' + price[i]['year'] + '</td>';
-            html += '<td>' + price[i]['front_pads'] + '</td>';
-            html += '<td>' + price[i]['rear_pads'] + '</td>';
-            html += '<td>' + price[i]['front_disk'] + '</td>';
-            html += '<td>' + price[i]['rear_disk'] + '</td>';
-            html += '<td></td>';
-            html += '<td></td>';
+            html += '<tr'+((i%2 != 0 )?' class = "count" ': '') +'>';
+            html += '<td  data-label="Марка">' + price[i]['maker'] + '</td>';
+            html += '<td  data-label="Модель">' + price[i]['model'] + '</td>';
+            html += '<td  data-label="Кузов">' + price[i]['chassis'] + '</td>';
+            html += '<td  data-label="Объём">' + price[i]['engine'] + '</td>';
+            html += '<td  data-label="Период выпуска">' + price[i]['year'] + '</td>';
+            html += '<td  data-label="Передние колодки">' + price[i]['front_pads'] + '</td>';
+            html += '<td  data-label="Задние колодки">' + price[i]['rear_pads'] + '</td>';
+            html += '<td  data-label="Передний тормозной диск">' + price[i]['front_disk'] + '</td>';
+            html += '<td  data-label="Задний тормозной диск">' + price[i]['rear_disk'] + '</td>';
             html += '</tr>';
         }
         return html ;

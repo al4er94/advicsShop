@@ -74,7 +74,7 @@ class ModelModuleAdvicsSearch extends Model {
     }
     
     public function insertPrice($chassis_id, $model_id){
-        $query = $this->db->query("INSERT INTO `advics_shop`.`oc_advics_price_list` (`maker_id`, `model_id`, `chassis_id`) VALUES ('19', '$model_id', '$chassis_id')");
+        $query = $this->db->query("INSERT INTO `advics_shop`.`oc_advics_price_list` (`maker_id`, `model_id`, `chassis_id`) VALUES ('28', '$model_id', '$chassis_id')");
     }
 
 }
