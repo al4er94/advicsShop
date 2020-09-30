@@ -211,6 +211,11 @@ table.table-2 th{
 	margin-top: 10px;
 }
 
+#content .table-wrap .table_content{
+	text-align:center;
+}
+
+
 @media screen and (min-width: 720px) {
    #searchForm form[name='searchAdvics']{
      flex-flow: initial;

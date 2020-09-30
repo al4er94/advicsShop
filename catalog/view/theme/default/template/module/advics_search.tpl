@@ -60,7 +60,10 @@
             <button disabled id="searchButton" onclick = "advicsSearch.searchPrice()"> Подобрать запчасть </button></div>
         </div>
         <div class="table-wrap">
-            <table class="table table-3">
+			<div class = "table_content">
+				Всего 3 шага для быстрого подбора фирменных запчатей! 
+			</div>
+            <table class="table table-3" style="display:none;">
               <thead>
                 <tr>
                   <th>Марка</th>

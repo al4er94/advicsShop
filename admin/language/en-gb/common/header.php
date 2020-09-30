@@ -4,9 +4,9 @@ $_['heading_title']          = 'OpenCart';
 
 // Text
 $_['text_order']             = 'Orders';
-$_['text_processing_status'] = 'Processing';
-$_['text_complete_status']   = 'Completed';
-$_['text_customer']          = 'Customers';
+$_['text_processing_status'] = 'В ожидании';
+$_['text_complete_status']   = 'Завершен';
+$_['text_customer']          = 'Ожидает оплаты';
 $_['text_online']            = 'Customers Online';
 $_['text_approval']          = 'Pending approval';
 $_['text_product']           = 'Products';

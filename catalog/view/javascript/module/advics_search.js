@@ -82,6 +82,8 @@ var advicsSearch ={
             },
             success: function(resp) {
                 $('.table #priceTable').html(advicsSearch.drowPrice(resp));
+				$('.table-wrap table').show();
+				$('.table-wrap .table_content').hide();
             }
         });
     }
