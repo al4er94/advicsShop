@@ -7,7 +7,8 @@ class ControllerModuleUniqom extends Controller{
         $this->document->setTitle($this->language->get('heading_title')); // Устанавливаем заголовок страницы  в шапке файла языка, то есть Hello World 
         $this->load->model('setting/setting'); // Загружаем Setting Model (все модели и общие настройки в OpenCart сохраняются с помощью этой модели) 
         $this->load->model('module/uniqom');
-        $this->model_module_uniqom->createTable();
+         $this->load->model('catalog/product');
+        //$this->model_module_uniqom->createTable();
         //var_dump($_POST);
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate() && isset($_POST['update_prod_id'])) { //    Начало If : валидация и проверка данных если они переданы с помощью безопасного метода (POST)
             self::getProductId($_POST['id_values']);
@@ -132,20 +133,31 @@ class ControllerModuleUniqom extends Controller{
 
     public function unpdateProdAPI(){
         $prodArray= $this->model_module_uniqom->getAllProduct();
+        $apiKey = $this->getApiKey();
         foreach ($prodArray as $product){
-            $res = self::getProductByApi($product['produc']);
+            $res = self::getProductByApi($product['produc'], $apiKey);
+            $this->model_module_uniqom->updateOrAddProduct($res);
         }
         return true;
     }
     
-    public function getProductByApi($produc){
+    public function getProductByApi($produc, $apiKey){
         //$urlUniqom = "http://uniqom.ru/api/v2.1/good.json/".$productId;
-        $url = "https://reqres.in/api/users/".$produc;
+        $url = "http://uniqom.ru/api/v2.1/good.json/$produc?api_key=".$apiKey;
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_HEADER, false);
-        $res = curl_exec($ch);
-        return json_decode($res);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$out = curl_exec($ch);
+        return json_decode($out, true);
+    }
+    
+    public function getApiKey(){
+    	$ch = curl_init();
+		$url = "http://uniqom.ru/api/v2.1/apikey.json?login=shevchenko.stanislav70@mail.ru &password=xnwh4h";
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$out = curl_exec($ch);
+		curl_close($ch);
+		return json_decode($out, true)['api_key'];
     }
 } 
